@@ -1,0 +1,444 @@
+/* edit-profile.css - Styles pour la page de modification de profil */
+/* Conserve exactement les mêmes variables que profile.css pour la cohérence */
+:root {
+    --primary-color: #a78bfa;
+    --primary-light: #c4b5fd;
+    --secondary-color: #f0abfc;
+    --accent-color: #fbcfe8;
+    --light-color: #fafafa;
+    --text-color: #4a5568;
+    --text-light: #718096;
+    --white: #ffffff;
+    --danger-color: #f87171;
+    --danger-light: #fecaca;
+    --success-color: #34d399;
+    --shadow-light: 0 10px 30px rgba(167, 139, 250, 0.1);
+    --shadow-medium: 0 20px 40px rgba(167, 139, 250, 0.15);
+}
+
+/* Styles généraux */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Carte principale pour l'édition */
+.card {
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--white), #f8fafc);
+    box-shadow: var(--shadow-light);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    position: relative;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.card:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.card h3::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Champs formulaire */
+.form-label {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-label::before {
+    content: '•';
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.form-control {
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--white);
+    color: var(--text-color);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+    background-color: var(--white);
+    transform: scale(1.01);
+}
+
+.form-control:valid {
+    border-color: #c6f6d5;
+}
+
+.form-control:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--danger-color);
+    background-color: rgba(248, 113, 113, 0.05);
+}
+
+/* Indicateur pour le champ mot de passe */
+.password-hint {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+    padding-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.password-hint::before {
+    content: '💡';
+    font-size: 0.9rem;
+}
+
+/* Conteneur des boutons */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Boutons */
+.btn {
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 150px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--white);
+    box-shadow: 0 8px 20px rgba(167, 139, 250, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(167, 139, 250, 0.4);
+    color: var(--white);
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #94a3b8, #cbd5e0);
+    color: var(--white);
+    box-shadow: 0 8px 20px rgba(148, 163, 184, 0.3);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #cbd5e0, #e2e8f0);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(148, 163, 184, 0.4);
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+/* État des boutons pendant l'envoi */
+.btn.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
+}
+
+.btn.loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--white);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Messages d'alerte */
+.alert {
+    border-radius: 12px;
+    border: none;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #065f46;
+    border-left: 4px solid var(--success-color);
+}
+
+.alert-error {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #991b1b;
+    border-left: 4px solid var(--danger-color);
+}
+
+.alert-info {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #1e40af;
+    border-left: 4px solid #3b82f6;
+}
+
+/* Animation pour les changements */
+.field-changed {
+    animation: highlightField 0.8s ease;
+    background-color: rgba(167, 139, 250, 0.05);
+}
+
+@keyframes highlightField {
+    0% {
+        background-color: rgba(167, 139, 250, 0.1);
+        transform: scale(1);
+    }
+    50% {
+        background-color: rgba(167, 139, 250, 0.2);
+        transform: scale(1.02);
+    }
+    100% {
+        background-color: rgba(167, 139, 250, 0.05);
+        transform: scale(1);
+    }
+}
+
+/* Indicateur de modification */
+.modification-indicator {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.form-control:focus + .modification-indicator,
+.form-control.changed + .modification-indicator {
+    opacity: 1;
+}
+
+/* Section de prévisualisation (optionnel) */
+.preview-section {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.preview-section h5 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.preview-section h5::before {
+    content: '👁️';
+    font-size: 1.1rem;
+}
+
+.preview-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.preview-item {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.preview-label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.preview-value {
+    font-weight: 600;
+    color: var(--text-color);
+    word-break: break-word;
+}
+
+/* Icônes dans les boutons */
+.btn i {
+    font-size: 1.1rem;
+}
+
+.btn-primary i {
+    color: var(--white);
+}
+
+/* Effet de validation */
+.validation-message {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 5px;
+    display: none;
+}
+
+.valid {
+    background-color: rgba(52, 211, 153, 0.1);
+    color: #065f46;
+    border-left: 3px solid var(--success-color);
+    display: block;
+}
+
+.invalid {
+    background-color: rgba(248, 113, 113, 0.1);
+    color: #991b1b;
+    border-left: 3px solid var(--danger-color);
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .card {
+        padding: 1.5rem !important;
+    }
+
+    .card h3 {
+        font-size: 1.8rem;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .preview-info {
+        grid-template-columns: 1fr;
+    }
+
+    .form-label {
+        font-size: 0.95rem;
+    }
+
+    .form-control {
+        font-size: 0.95rem;
+        padding: 10px 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .card h3 {
+        font-size: 1.6rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        min-width: auto;
+    }
+
+    .button-container {
+        margin-top: 1.5rem;
+    }
+}
+
+/* Animation de fadeIn (identique à profile.css) */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Transition pour tous les éléments interactifs */
+.form-control, .btn, .alert {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

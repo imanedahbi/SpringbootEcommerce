@@ -1,0 +1,406 @@
+/* home.css - Styles personnalisés pour la page d'accueil */
+
+/* Variables CSS avec des couleurs douces et féminines */
+:root {
+    --primary-color: #a78bfa;
+    --primary-light: #c4b5fd;
+    --secondary-color: #f0abfc;
+    --accent-color: #fbcfe8;
+    --light-color: #fafafa;
+    --text-color: #4a5568;
+    --text-light: #718096;
+    --white: #ffffff;
+}
+
+/* Styles généraux */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--light-color);
+}
+
+.min-vh-80 {
+    min-height: 80vh;
+}
+
+.section-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 3rem;
+    position: relative;
+    font-size: 2.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+    color: var(--white);
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.1"><path fill="white" d="M500,250c138,0,250,112,250,250S638,750,500,750S250,638,250,500S362,250,500,250z"/></svg>');
+    background-size: 200px;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+.hero-image {
+    max-height: 450px;
+    object-fit: cover;
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.hero-buttons .btn {
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.hero-buttons .btn-primary {
+    background: linear-gradient(135deg, var(--white), #e2e8f0);
+    color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(167, 139, 250, 0.3);
+}
+
+.hero-buttons .btn-outline-light {
+    border: 2px solid var(--white);
+    color: var(--white);
+    background: transparent;
+}
+
+.hero-buttons .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Section Catégories */
+.categories-section {
+    background-color: var(--white);
+    padding: 80px 0;
+}
+
+.category-card {
+    background: linear-gradient(135deg, var(--white), #f8fafc);
+    border: 1px solid #e2e8f0;
+    transition: all 0.4s ease;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.category-card:hover::before {
+    left: 100%;
+}
+
+.category-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(167, 139, 250, 0.15);
+    border-color: var(--primary-light);
+}
+
+.category-icon {
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+    transform: scale(1.1);
+}
+
+.category-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.category-description {
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.category-card .btn {
+    border-radius: 25px;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.category-card .btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Section Produits populaires */
+.popular-products {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 80px 0;
+}
+
+.product-card {
+    transition: all 0.4s ease;
+    overflow: hidden;
+    border: none;
+    border-radius: 15px;
+    background: var(--white);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(167, 139, 250, 0.15);
+}
+
+.product-card .card-img-top {
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .card-img-top {
+    transform: scale(1.08);
+}
+
+.product-card .card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.product-card .card-text {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.price {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.product-card .btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border: none;
+    border-radius: 25px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.product-card .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(167, 139, 250, 0.4);
+}
+
+.popular-products .btn-outline-primary {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 25px;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.popular-products .btn-outline-primary:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Section Avantages */
+.features-section {
+    background: var(--white);
+    padding: 80px 0;
+}
+
+.feature-item {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    padding: 2rem 1.5rem !important;
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.feature-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.feature-description {
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* Section Newsletter */
+.newsletter-section {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-color) 100%);
+    padding: 60px 0;
+}
+
+.newsletter-section .form-control {
+    border-radius: 25px 0 0 25px;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+}
+
+.newsletter-section .form-control:focus {
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+}
+
+.newsletter-section .btn {
+    border-radius: 0 25px 25px 0;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    background: var(--white);
+    color: var(--primary-color);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.newsletter-section .btn:hover {
+    background: #f7fafc;
+    transform: translateX(2px);
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    padding: 50px 0 30px;
+}
+
+.footer h5 {
+    color: var(--primary-light);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.footer a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: #cbd5e0 !important;
+}
+
+.footer a:hover {
+    color: var(--primary-light) !important;
+    padding-left: 5px;
+}
+
+.footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer .fa-envelope,
+.footer .fa-phone {
+    color: var(--primary-light);
+    width: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.3rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .hero-buttons .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .hero-buttons .btn:last-child {
+        margin-bottom: 0;
+    }
+
+    .category-card,
+    .feature-item {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Animations douces */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.category-card,
+.product-card,
+.feature-item {
+    animation: fadeInUp 0.6s ease-out;
+}

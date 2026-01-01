@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gestion Produits - ACE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS personnalisé -->
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="css/navbar.css">
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="css/product.css">
+
+</head>
+<!-- Inclusion de la navbar -->
+<div id="navbar-container"></div>
+
+<body class="bg-light">
+
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Gestion des Produits</h1>
+
+    <!-- Formulaire ajout -->
+    <div class="card mb-4" id="adminProductForm" style="display: none;">
+
+
+    <div class="card-body">
+            <h5 class="card-title">Ajouter un produit</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Nom *</label>
+                    <input id="name" class="form-control" type="text" placeholder="Nom du produit">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Catégorie *</label>
+                    <select id="category" class="form-select">
+                        <option value="">-- Choisir --</option>
+                        <option value="huile">huile</option>
+                        <option value="serum">serum</option>
+                        <option value="masque">masque</option>
+                        <option value="shampoing">shampoing</option>
+                        <option value="conditioner">conditioner</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Prix (DH) *</label>
+                    <input id="price" class="form-control" type="number" min="0" step="0.01">
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label">Description</label>
+                    <input id="description" class="form-control" type="text">
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label">Image (optionnelle)</label>
+                    <input id="imageFile" class="form-control" type="file" accept="image/*">
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button id="addBtn" class="btn btn-primary w-100">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recherche & Actualiser -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <input id="searchInput" class="form-control" style="min-width:240px" placeholder="Rechercher par nom...">
+        <button id="refreshBtn" class="btn btn-outline-secondary ms-2">Actualiser</button>
+    </div>
+
+    <!-- Liste produits -->
+    <div id="product-list" class="row gy-3"></div>
+</div>
+
+<!-- Modal Modifier Produit -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProductModalLabel">Modifier le produit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editProductId">
+                <div class="mb-3">
+                    <label class="form-label">Nom *</label>
+                    <input id="editName" class="form-control" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Catégorie *</label>
+                    <select id="editCategory" class="form-select">
+                        <option value="">-- Choisir --</option>
+                        <option value="huile">huile</option>
+                        <option value="serum">serum</option>
+                        <option value="masque">masque</option>
+                        <option value="shampoing">shampoing</option>
+                        <option value="conditioner">conditioner</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Prix (DH) *</label>
+                    <input id="editPrice" class="form-control" type="number" min="0" step="0.01">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input id="editDescription" class="form-control" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Image (optionnelle)</label>
+                    <input id="editImageFile" class="form-control" type="file" accept="image/*">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="saveEditBtn">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JS personnalisé -->
+<script src="js/products.js"></script>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Script pour charger la navbar -->
+<script>
+    // Charger la navbar
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-container').innerHTML = data;
+        })
+        .catch(error => console.error('Erreur lors du chargement de la navbar:', error));
+</script>
+</body>
+</html>
